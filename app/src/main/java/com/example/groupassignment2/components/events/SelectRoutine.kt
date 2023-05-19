@@ -34,7 +34,9 @@ fun SelectRoutine(
     //val scope = rememberCoroutineScope()
     val dataStore = RoutineViewModel(context)
     dataStore.loadData()
-    val retrievedData = dataStore.name.value
+    val lastSavedRecord = dataStore.routineDataList.lastOrNull()
+    val lastSavedRoutineName = lastSavedRecord?.routineName
+
 
     val title = "Select a Routine"
     val iconsList = listOf( IconType.ImageVectorIcon(imageVector = Icons.Default.ArrowBack))
@@ -74,7 +76,7 @@ fun SelectRoutine(
                         modifier = Modifier.padding(start = 16.dp)
                     )
                 }
-                if(retrievedData.isNotEmpty()){
+                if(lastSavedRecord != null){
 
                     Spacer(modifier = Modifier.height(32.dp))
 
@@ -89,11 +91,13 @@ fun SelectRoutine(
                             modifier = Modifier.padding(start = 16.dp)
                         )
 
-                        Text(
-                            text = retrievedData,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(start = 16.dp)
-                        )
+                        if (lastSavedRoutineName != null) {
+                            Text(
+                                text = lastSavedRoutineName,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(start = 16.dp)
+                            )
+                        }
                     }
                 }
             }

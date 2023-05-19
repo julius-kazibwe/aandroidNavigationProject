@@ -34,7 +34,6 @@ fun Routines(
     //val scope = rememberCoroutineScope()
     val dataStore =RoutineViewModel(context)
     dataStore.loadData()
-    val retrievedData = dataStore.name.value
 
 
     val title = " "
@@ -47,7 +46,7 @@ fun Routines(
         content ={
 
             if(
-                retrievedData.isEmpty()
+                dataStore.routineDataList.isEmpty()
             ){
             Box (
                 modifier = Modifier
@@ -62,6 +61,7 @@ fun Routines(
                     contentAlignment = Alignment.Center
 
                 ) {
+
                     Column(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
@@ -93,48 +93,66 @@ fun Routines(
                     .verticalScroll(rememberScrollState())
                     .weight(1f)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth().height(50.dp)
-                        .background(colorResource(id = R.color.settingsRow)),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Active",
-                        color = Color.Gray,
-                        modifier = Modifier.padding(start = 16.dp)
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp, bottom = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.notify),
-                        contentDescription = null,
-                        modifier = Modifier.padding(start = 16.dp)
-                    )
-
-                    Column(
-                        modifier = Modifier.padding(start = 16.dp)
+                for (routineData in dataStore.routineDataList) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth().height(50.dp)
+                            .background(colorResource(id = R.color.settingsRow)),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = retrievedData,
-                            fontWeight = FontWeight.Bold
+                            text = "Active",
+                            color = Color.Gray,
+                            modifier = Modifier.padding(start = 16.dp)
+                        )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 16.dp, bottom = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.notify),
+                            contentDescription = null,
+                            modifier = Modifier.padding(start = 16.dp)
                         )
 
-                        Text(
-                            text = "Last Run: Never",
-                            style = MaterialTheme.typography.subtitle1,
-                            color = Color.Gray
-                        )
+                        Column(
+                            modifier = Modifier.padding(start = 16.dp)
+                        ) {
+
+                            Text(
+                                text = "${routineData.routineName}",
+                                fontWeight = FontWeight.Bold
+
+                            )
+                            Text(
+                                text = "Last Run: ${routineData.timeOfRunning}",
+                                style = MaterialTheme.typography.subtitle1,
+                                color = Color.Gray
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .padding(end= 16.dp)
+                                .fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.End
+                        ){
+                            Button(onClick = { /* Perform edit action */ }) {
+                                Text(text = "Edit")
+                            }
+                            Spacer(Modifier.width(8.dp))
+                            Button(onClick = { /* Perform delete action */ }) {
+                                Text(text = "Delete")
+                            }
+                        }
+
+
                     }
 
                 }
-                Divider(color = Color.LightGray, thickness = 1.dp)
-
             }
         }}
 
@@ -155,6 +173,8 @@ fun Routines(
                 ) {
                     Icon(Icons.Default.Add, contentDescription = "Add")                }
             }
+
         }
+
     )
 }

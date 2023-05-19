@@ -37,9 +37,7 @@ fun SelectEvent(navController: NavHostController){
             MyToolbar(iconsList1 = iconsList1, title = title, iconsList2 = emptyList() ,navController, routeList1 = routeList1)
         },
         content = {
-            Column (
-
-                    ){
+            Column {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -88,7 +86,7 @@ fun SelectEvent(navController: NavHostController){
 
                     ) {
                         Text(text = "It's sunset at ")
-                        Text(text = "Location", fontWeight = Bold,)
+                        Text(text = "Location", fontWeight = Bold)
                     }
 
                     Divider(color = Color.LightGray, thickness = 1.dp, modifier = Modifier.padding(start = 12.dp, end = 12.dp))
@@ -102,7 +100,7 @@ fun SelectEvent(navController: NavHostController){
 
                     ) {
                         Text(text = "It's sunrise at ")
-                        Text(text = "Location", fontWeight = Bold,)
+                        Text(text = "Location", fontWeight = Bold)
                     }
 
                     Divider(color = Color.LightGray, thickness = 1.dp, modifier = Modifier.padding(start = 12.dp, end = 12.dp))
@@ -118,7 +116,7 @@ fun SelectEvent(navController: NavHostController){
                         Column{
                             Row{
                                 Text(text = "It's ")
-                                Text(text = "15 ", fontWeight = Bold,)
+                                Text(text = "15 ", fontWeight = Bold)
                                 Text(text = "minutes before sunrise at")
                             }
                             Text(text = "Location", fontWeight = Bold)
@@ -139,7 +137,7 @@ fun SelectEvent(navController: NavHostController){
                         Column{
                             Row{
                                 Text(text = "It's ")
-                                Text(text = "15 ", fontWeight = Bold,)
+                                Text(text = "15 ", fontWeight = Bold)
                                 Text(text = "minutes after sunrise at")
                             }
                             Text(text = "Location", fontWeight = Bold)
@@ -159,7 +157,7 @@ fun SelectEvent(navController: NavHostController){
                         Column{
                             Row{
                                 Text(text = "It's ")
-                                Text(text = "15 ", fontWeight = Bold,)
+                                Text(text = "15 ", fontWeight = Bold)
                                 Text(text = "minutes before sunset at")
                             }
                             Text(text = "Location", fontWeight = Bold)
@@ -179,7 +177,7 @@ fun SelectEvent(navController: NavHostController){
                         Column{
                             Row{
                                 Text(text = "It's ")
-                                Text(text = "15 ", fontWeight = Bold,)
+                                Text(text = "15 ", fontWeight = Bold)
                                 Text(text = "minutes after sunset at")
                             }
                             Text(text = "Location", fontWeight = Bold)
